@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hides - Roblox Executor</title>
   
-  <!-- Tailwind via CDN (optional but used) -->
+  <!-- Tailwind via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -65,6 +65,7 @@
     </p>
 
     <div class="flex items-center justify-center gap-4 fade-in" style="animation-delay:0.8s">
+      <!-- ✅ DOWNLOAD BUTTON – now uses your real link + toast -->
       <a href="javascript:void(0)" onclick="downloadApp()" class="inline-flex items-center justify-center text-base font-medium bg-white shadow hover:bg-white/90 h-12 px-8 py-2 gap-1 rounded-lg text-black transition-colors">
         Download
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 size-4 transition-transform group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -141,7 +142,7 @@
                     <div class="flex"><span class="w-8 text-white/15 select-none text-right mr-4 inline-block">23</span><span class="animate-pulse text-green-400">█</span></div>
                   </div>
                 </div>
-                <!-- Bottom bar - ALL BUTTONS NOW WORK via JS -->
+                <!-- Bottom bar - all buttons work via JS -->
                 <div class="flex items-center gap-2 px-4 py-2.5 border-t border-white/5 bg-[#080808]">
                   <button onclick="executeScript()" class="px-5 py-1.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-[11px] rounded font-semibold cursor-pointer flex items-center gap-1.5 hover:opacity-80 transition">
                     <span>▶</span> Execute
@@ -152,7 +153,7 @@
                   <div class="ml-auto text-[10px] text-white/20">Lua 5.1 | UTF-8 | Line 23</div>
                 </div>
               </div>
-              <!-- Console - with ID for live updates -->
+              <!-- Console -->
               <div class="hidden sm:flex w-56 flex-col border-l border-white/5 bg-[#080808]">
                 <div class="px-3 py-2 text-[10px] text-white/30 uppercase tracking-wider border-b border-white/5 flex items-center justify-between"><span>Console</span><span class="text-white/15 cursor-pointer">✕</span></div>
                 <div class="flex-1 p-3 text-[10px] leading-[18px] font-mono overflow-hidden" id="console-log">
@@ -224,7 +225,6 @@
         <p class="mt-6 text-xl leading-8 text-white/80">Built from the ground up for speed, safety, and reliability.</p>
       </div>
       <div class="mx-auto grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- feature cards (shortened for brevity) -->
         <div class="group rounded-xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:bg-white/[0.05]">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-10 text-white/70 mb-4 group-hover:text-white transition-colors"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
           <h3 class="text-lg font-semibold text-white mb-2">Lightning Fast</h3>
@@ -235,8 +235,6 @@
           <h3 class="text-lg font-semibold text-white mb-2">Undetectable</h3>
           <p class="text-sm leading-relaxed text-white/60">Advanced anti-detection bypasses Byfron and Hyperion.</p>
         </div>
-        <!-- ... add the other 4 cards similarly, but we'll keep the rest for brevity, you can copy from earlier -->
-        <!-- I'll include all 6 for completeness -->
         <div class="group rounded-xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:bg-white/[0.05]">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-10 text-white/70 mb-4 group-hover:text-white transition-colors"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg>
           <h3 class="text-lg font-semibold text-white mb-2">Script Hub</h3>
@@ -296,17 +294,60 @@
         <p class="mt-6 text-xl leading-8 text-white/80">Everything you need to know about Hides.</p>
       </div>
       <div class="mx-auto max-w-3xl flex flex-col gap-3">
-        <!-- FAQ items (shortened for brevity, you can copy all from previous) -->
         <div class="faq-item rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
           <button class="faq-toggle flex w-full items-center justify-between p-5 text-left text-white hover:bg-white/[0.03] transition-colors">
             <span class="text-sm font-medium">Is Hides safe to use?</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-white/50 shrink-0 transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="faq-answer">
-            <p class="px-5 pb-5 text-sm leading-relaxed text-white/60">Yes. Hides uses <span class="text-cyan-400 font-semibold">encrypted communication</span> and a sandboxed execution environment.</p>
+            <p class="px-5 pb-5 text-sm leading-relaxed text-white/60">Yes. Hides uses <span class="text-cyan-400 font-semibold">encrypted communication</span> and a sandboxed execution environment. It doesn't touch personal files, collect passwords, or send telemetry. The bootstrapper is signed and verified on every launch.</p>
           </div>
         </div>
-        <!-- add more FAQ items similarly -->
+        <div class="faq-item rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
+          <button class="faq-toggle flex w-full items-center justify-between p-5 text-left text-white hover:bg-white/[0.03] transition-colors">
+            <span class="text-sm font-medium">Is it really free — no key, no ads?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-white/50 shrink-0 transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p class="px-5 pb-5 text-sm leading-relaxed text-white/60">100% free and <span class="text-cyan-400 font-semibold">keyless</span>. No ad-gates, no Linkvertise, no checkpoints. You download, extract, run — done. We never ask for payment or force you through link shorteners.</p>
+          </div>
+        </div>
+        <div class="faq-item rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
+          <button class="faq-toggle flex w-full items-center justify-between p-5 text-left text-white hover:bg-white/[0.03] transition-colors">
+            <span class="text-sm font-medium">Will I get banned on Roblox?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-white/50 shrink-0 transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p class="px-5 pb-5 text-sm leading-relaxed text-white/60">Hides maintains a <span class="text-cyan-400 font-semibold">high UNC rate</span>, meaning most standard detection vectors are bypassed. However, no executor is 100% undetectable — use an alt account if you want zero risk.</p>
+          </div>
+        </div>
+        <div class="faq-item rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
+          <button class="faq-toggle flex w-full items-center justify-between p-5 text-left text-white hover:bg-white/[0.03] transition-colors">
+            <span class="text-sm font-medium">Does it work after Roblox updates?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-white/50 shrink-0 transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p class="px-5 pb-5 text-sm leading-relaxed text-white/60">We patch within <span class="text-cyan-400 font-semibold">24 hours</span> of every Roblox client update. The auto-updater checks on launch, so you always run the latest compatible version.</p>
+          </div>
+        </div>
+        <div class="faq-item rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
+          <button class="faq-toggle flex w-full items-center justify-between p-5 text-left text-white hover:bg-white/[0.03] transition-colors">
+            <span class="text-sm font-medium">What games does it support?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-white/50 shrink-0 transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p class="px-5 pb-5 text-sm leading-relaxed text-white/60">Hides supports <span class="text-cyan-400 font-semibold">all Roblox games</span>. The built-in script hub includes optimized scripts for Blox Fruits, Pet Simulator, Arsenal, and hundreds more — with new additions weekly.</p>
+          </div>
+        </div>
+        <div class="faq-item rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden">
+          <button class="faq-toggle flex w-full items-center justify-between p-5 text-left text-white hover:bg-white/[0.03] transition-colors">
+            <span class="text-sm font-medium">How do I get started?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-white/50 shrink-0 transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p class="px-5 pb-5 text-sm leading-relaxed text-white/60">Download the latest version, extract, and run <span class="text-cyan-400 font-semibold">.exe</span>. It auto-injects when Roblox launches. No additional setup, no dependencies, no configuration needed.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -316,6 +357,7 @@
     <div class="flex w-full flex-col items-center justify-center text-center">
       <h1 class="text-3xl font-bold lg:text-4xl text-white">Stop getting detected.</h1>
       <p class="mt-2 text-gray-400">Download Hides now and execute scripts without limits.</p>
+      <!-- ✅ DOWNLOAD BUTTON (same function) -->
       <a href="javascript:void(0)" onclick="downloadApp()" class="inline-flex items-center justify-center rounded-[2rem] border border-white/10 bg-black/30 shadow-sm hover:bg-white/5 text-sm font-medium h-10 px-8 group mt-4 transition-colors">
         Download Now
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 size-4"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
