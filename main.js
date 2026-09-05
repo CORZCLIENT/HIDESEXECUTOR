@@ -37,7 +37,6 @@
       if (p.x < 0 || p.x > w) p.vx *= -1;
       if (p.y < 0 || p.y > h) p.vy *= -1;
     }
-    // Draw lines between nearby particles
     ctx.strokeStyle = 'rgba(255,255,255,0.04)';
     ctx.lineWidth = 0.5;
     for (let i = 0; i < particles.length; i++) {
@@ -68,11 +67,13 @@ function showToast(msg) {
   setTimeout(() => { toast.remove(); }, 3500);
 }
 
-// ---- Download buttons ----
+// ---- DOWNLOAD BUTTON – now uses your actual .exe link ----
 function downloadApp() {
-  showToast('🚀 Download started! (Replace this with your actual download link)');
-  // Uncomment and replace with your real download URL:
-  // window.location.href = 'https://your-actual-download-url.com/file.exe';
+  const downloadUrl = 'https://github.com/CORZCLIENT/hides/raw/main/Hides.exe';
+  showToast('🚀 Downloading Hides.exe...');
+  setTimeout(() => {
+    window.location.href = downloadUrl;
+  }, 600);
 }
 
 // ---- Editor buttons ----
@@ -110,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', function() {
       const answer = this.nextElementSibling;
       const isOpen = answer.classList.contains('open');
-      // Close all others
       document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('open'));
       if (!isOpen) {
         answer.classList.add('open');
