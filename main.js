@@ -67,17 +67,17 @@ function showToast(msg) {
   setTimeout(() => { toast.remove(); }, 3500);
 }
 
-// ---- ✅ DIRECT DOWNLOAD (same page, no redirect, no popup) ----
+// ---- ✅ DIREKTER DOWNLOAD (bleibt auf der Seite) ----
 function downloadApp() {
-  // Your exact raw file URL
+  // Der korrekte RAW-Link zu deiner .exe-Datei
   const downloadUrl = 'https://raw.githubusercontent.com/CORZCLIENT/hides/main/Hides.exe';
-  
-  showToast('🚀 Downloading Hides.exe...');
 
-  // Create a temporary anchor, trigger download, then remove it
+  showToast('🚀 Download wird gestartet ...');
+
+  // Erstelle einen unsichtbaren <a>-Tag mit download-Attribut
   const link = document.createElement('a');
   link.href = downloadUrl;
-  link.download = 'Hides.exe';  // forces download instead of opening in browser
+  link.download = 'Hides.exe';  // zwingt den Browser zum Herunterladen
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -92,24 +92,24 @@ function executeScript() {
   entry.innerText = `[${time}] [✓] Script executed successfully (no errors)`;
   consoleDiv.appendChild(entry);
   consoleDiv.scrollTop = consoleDiv.scrollHeight;
-  showToast('✅ Script executed! Check the console.');
+  showToast('✅ Script ausgeführt! Siehe Konsole.');
 }
 
 function clearScript() {
   const consoleDiv = document.getElementById('console-log');
   consoleDiv.innerHTML = `
     <div class="text-white/20">[System]</div>
-    <div class="text-yellow-400/70">[!] Console cleared</div>
+    <div class="text-yellow-400/70">[!] Konsole geleert</div>
   `;
-  showToast('🧹 Console cleared.');
+  showToast('🧹 Konsole geleert.');
 }
 
 function saveScript() {
-  showToast('💾 Script saved locally (mock action)');
+  showToast('💾 Script lokal gespeichert (Demo)');
 }
 
 function openFile() {
-  showToast('📂 File picker opened (mock action)');
+  showToast('📂 Dateiauswahl geöffnet (Demo)');
 }
 
 // ---- FAQ Accordion ----
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// ---- Expose functions to global scope ----
+// ---- Funktionen global verfügbar machen ----
 window.downloadApp = downloadApp;
 window.executeScript = executeScript;
 window.clearScript = clearScript;
