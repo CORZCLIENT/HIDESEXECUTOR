@@ -67,20 +67,32 @@ function showToast(msg) {
   setTimeout(() => { toast.remove(); }, 3500);
 }
 
-// ---- ✅ DIREKTER DOWNLOAD (bleibt auf der Seite) ----
+// ---- ✅ DIREKTER DOWNLOAD (keine Weiterleitung, bleibt auf der Seite) ----
 function downloadApp() {
-  // Der korrekte RAW-Link zu deiner .exe-Datei
   const downloadUrl = 'https://raw.githubusercontent.com/CORZCLIENT/hides/main/Hides.exe';
-
   showToast('🚀 Download wird gestartet ...');
 
-  // Erstelle einen unsichtbaren <a>-Tag mit download-Attribut
-  const link = document.createElement('a');
-  link.href = downloadUrl;
-  link.download = 'Hides.exe';  // zwingt den Browser zum Herunterladen
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  // Verwende fetch, um die Datei als Blob zu laden und dann einen Download zu erzwingen
+  fetch(downloadUrl)
+    .then(res => {
+      if (!res.ok) throw new Error('Datei nicht gefunden (404)');
+      return res.blob();
+    })
+    .then(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Hides.exe';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('✅ Download abgeschlossen!');
+    })
+    .catch(err => {
+      showToast('❌ Fehler: ' + err.message);
+      console.error(err);
+    });
 }
 
 // ---- Editor buttons ----
@@ -89,10 +101,10 @@ function executeScript() {
   const time = new Date().toLocaleTimeString();
   const entry = document.createElement('div');
   entry.className = 'text-green-400/70 mt-1';
-  entry.innerText = `[${time}] [✓] Script executed successfully (no errors)`;
+  entry.innerText = `[${time}] [✓] Script executed successfully`;
   consoleDiv.appendChild(entry);
   consoleDiv.scrollTop = consoleDiv.scrollHeight;
-  showToast('✅ Script ausgeführt! Siehe Konsole.');
+  showToast('✅ Script ausgeführt!');
 }
 
 function clearScript() {
@@ -126,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// ---- Funktionen global verfügbar machen ----
+// ---- Funktionen global ----
 window.downloadApp = downloadApp;
 window.executeScript = executeScript;
 window.clearScript = clearScript;
