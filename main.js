@@ -67,13 +67,20 @@ function showToast(msg) {
   setTimeout(() => { toast.remove(); }, 3500);
 }
 
-// ---- DOWNLOAD BUTTON – now uses your actual .exe link ----
+// ---- ✅ DIRECT DOWNLOAD (same page, no popup) ----
 function downloadApp() {
-  const downloadUrl = 'https://github.com/CORZCLIENT/hides/raw/main/Hides.exe';
+  // Your actual raw file URL
+  const downloadUrl = 'https://raw.githubusercontent.com/CORZCLIENT/hides/main/Hides.exe';
+  
   showToast('🚀 Downloading Hides.exe...');
-  setTimeout(() => {
-    window.location.href = downloadUrl;
-  }, 600);
+
+  // Create a hidden anchor, trigger download, then remove it
+  const link = document.createElement('a');
+  link.href = downloadUrl;
+  link.download = 'Hides.exe'; // forces the browser to download instead of open
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 // ---- Editor buttons ----
@@ -119,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// ---- Expose functions to global scope for inline onclick attributes ----
+// ---- Expose functions to global scope ----
 window.downloadApp = downloadApp;
 window.executeScript = executeScript;
 window.clearScript = clearScript;
