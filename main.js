@@ -67,31 +67,40 @@ function showToast(msg) {
   setTimeout(() => { toast.remove(); }, 3500);
 }
 
-// ---- ✅ DIREKTER DOWNLOAD (keine Weiterleitung, bleibt auf der Seite) ----
+// ---- ✅ DIREKTER DOWNLOAD (bleibt auf der Seite) ----
 function downloadApp() {
   const downloadUrl = 'https://raw.githubusercontent.com/CORZCLIENT/hides/main/Hides.exe';
   showToast('🚀 Download wird gestartet ...');
 
-  // Verwende fetch, um die Datei als Blob zu laden und dann einen Download zu erzwingen
-  fetch(downloadUrl)
+  fetch(downloadUrl, {
+    method: 'GET',
+    headers: { 'Accept': 'application/octet-stream' },
+    referrerPolicy: 'no-referrer'
+  })
     .then(res => {
       if (!res.ok) throw new Error('Datei nicht gefunden (404)');
       return res.blob();
     })
     .then(blob => {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'Hides.exe';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Hides.exe';
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      
+      // Cleanup
+      setTimeout(() => {
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      }, 100);
+      
       showToast('✅ Download abgeschlossen!');
     })
     .catch(err => {
-      showToast('❌ Fehler: ' + err.message);
-      console.error(err);
+      showToast('❌ Fehler beim Download: ' + err.message);
+      console.error('Download Fehler:', err);
     });
 }
 
