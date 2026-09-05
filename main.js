@@ -69,14 +69,10 @@ function showToast(msg) {
 
 // ---- ✅ DIREKTER DOWNLOAD (bleibt auf der Seite) ----
 function downloadApp() {
-  const downloadUrl = 'https://raw.githubusercontent.com/CORZCLIENT/hides/main/Hides.exe';
+  const downloadUrl = 'https://cdn.jsdelivr.net/gh/CORZCLIENT/hides@main/Hides.exe';
   showToast('🚀 Download wird gestartet ...');
 
-  fetch(downloadUrl, {
-    method: 'GET',
-    headers: { 'Accept': 'application/octet-stream' },
-    referrerPolicy: 'no-referrer'
-  })
+  fetch(downloadUrl)
     .then(res => {
       if (!res.ok) throw new Error('Datei nicht gefunden (404)');
       return res.blob();
@@ -90,7 +86,6 @@ function downloadApp() {
       document.body.appendChild(link);
       link.click();
       
-      // Cleanup
       setTimeout(() => {
         document.body.removeChild(link);
         window.URL.revokeObjectURL(url);
@@ -99,8 +94,8 @@ function downloadApp() {
       showToast('✅ Download abgeschlossen!');
     })
     .catch(err => {
-      showToast('❌ Fehler beim Download: ' + err.message);
-      console.error('Download Fehler:', err);
+      showToast('❌ Fehler: ' + err.message);
+      console.error(err);
     });
 }
 
