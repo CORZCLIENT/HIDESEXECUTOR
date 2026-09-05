@@ -67,17 +67,17 @@ function showToast(msg) {
   setTimeout(() => { toast.remove(); }, 3500);
 }
 
-// ---- ✅ DIRECT DOWNLOAD (same page, no popup) ----
+// ---- ✅ DIRECT DOWNLOAD (same page, no redirect, no popup) ----
 function downloadApp() {
-  // Your actual raw file URL
+  // Your exact raw file URL
   const downloadUrl = 'https://raw.githubusercontent.com/CORZCLIENT/hides/main/Hides.exe';
   
   showToast('🚀 Downloading Hides.exe...');
 
-  // Create a hidden anchor, trigger download, then remove it
+  // Create a temporary anchor, trigger download, then remove it
   const link = document.createElement('a');
   link.href = downloadUrl;
-  link.download = 'Hides.exe'; // forces the browser to download instead of open
+  link.download = 'Hides.exe';  // forces download instead of opening in browser
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
